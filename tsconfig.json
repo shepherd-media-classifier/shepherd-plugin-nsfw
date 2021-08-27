@@ -9,8 +9,8 @@
     "rootDir": "./src",                             /* Specify the root directory of input files. Use to control the output directory structure with --outDir. */
     "composite": true,                           /* Enable project compilation */
     "removeComments": true,                      /* Do not emit comments to output. */
-    "strict": true,  
-    "useUnknownInCatchVariables": false,
+    // "strict": true,  
+    // "useUnknownInCatchVariables": false,
     "esModuleInterop": true,                        /* Enables emit interoperability between CommonJS and ES Modules via creation of namespace objects for all imports. Implies 'allowSyntheticDefaultImports'. */
 
     /* Advanced Options */

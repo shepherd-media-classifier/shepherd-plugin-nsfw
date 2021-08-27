@@ -2,10 +2,11 @@
   "name": "shepherd-plugin-nsfw",
   "version": "0.0.1",
   "description": "",
-  "main": "build/index.js",
-  "types": "build/index.d.ts",
+  "main": "./build/index.js",
+  "types": "./build/index.d.ts",
   "scripts": {
-    "prepublish": "npx rimraf build && tsc",
+    "build": "npx rimraf build && tsc",
+    "prepublish": "npm run build",
     "postversion": "git push && git push --tags && npm publish"
   },
   "repository": {

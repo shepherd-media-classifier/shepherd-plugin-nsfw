@@ -27,7 +27,7 @@ export class NsfwTools {
 
 		logger(prefix, 'loading model once')
 
-		NsfwTools._model = await nsfw.load('file://src/NsfwjsPlugin/model/', {size: 299})
+		NsfwTools._model = await nsfw.load('file://./src/model/', {size: 299})
 		return NsfwTools._model
 	}
 
