@@ -1,0 +1,35 @@
+{
+  "name": "shepherd-plugin-nsfw",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shepherd-media-classifier/shepherd-plugin-nsfw.git"
+  },
+  "keywords": [
+    "shepherd",
+    "plugin",
+    "classifier"
+  ],
+  "author": "Ros McMahon <rosmcmahon@gmail.com>",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/shepherd-media-classifier/shepherd-plugin-nsfw/issues"
+  },
+  "homepage": "https://github.com/shepherd-media-classifier/shepherd-plugin-nsfw#readme",
+  "devDependencies": {
+    "@types/node": "^16.7.2",
+    "ts-node": "^10.2.1"
+  },
+  "dependencies": {
+    "@tensorflow/tfjs-node": "^3.8.0",
+    "ansi-colors": "^4.1.1",
+    "nsfwjs": "^2.4.1",
+    "shepherd-plugin-interfaces": "^0.0.2"
+  }
+}
