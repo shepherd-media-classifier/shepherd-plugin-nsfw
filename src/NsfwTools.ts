@@ -47,7 +47,6 @@ export class NsfwTools {
 
 		const result: FilterResult = {
 			flagged: false,
-			valid_data: true,
 		}
 
 		try{
@@ -58,7 +57,6 @@ export class NsfwTools {
 				fps: 1,
 			})
 
-			// let flagged = false
 			let score: {nsfw_hentai?: number, nsfw_porn?: number, nsfw_sexy?: number } = {}
 
 			for(const frame of framePredictions) {
@@ -159,7 +157,6 @@ export class NsfwTools {
 			
 			return {
 				flagged,
-				valid_data: true,
 				scores: JSON.stringify(scores),
 			}
 
