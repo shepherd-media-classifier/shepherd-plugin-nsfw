@@ -13,9 +13,7 @@ describe('shepherd-plugin-nsfw from build tests', ()=>{
 	it('uses checkImage', async()=>{
 		const pic = await fs.readFile('./test/image.jpeg')
 		const res = await NsfwFilterBuild.checkImage(pic,'image/jpeg', 'fake-txid')
-		console.log(res)
 		expect(res.flagged).false
-		expect((res as FilterResult).valid_data).true
 	}).timeout(0)
 })
 

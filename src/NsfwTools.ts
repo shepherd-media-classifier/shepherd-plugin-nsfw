@@ -3,6 +3,7 @@ import * as nsfw from 'nsfwjs'
 import { logger } from './utils/logger'
 import { FilterErrorResult, FilterResult } from 'shepherd-plugin-interfaces'
 
+const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
 
 const prefix = 'nsfwjs-plugin'
 
@@ -10,8 +11,7 @@ const prefix = 'nsfwjs-plugin'
 tf.enableProdMode()
 
 export class NsfwTools {
-	private static _return: FilterResult
-
+	private static _isLoading = false
 	private static _model: nsfw.NSFWJS
 	private constructor(){} //hide
 
@@ -19,15 +19,18 @@ export class NsfwTools {
 		await NsfwTools.loadModel()
 	}
 
-	static async loadModel()   {
+	static async loadModel(){
+		//wait if model in process of being loaded
+		while(this._isLoading) await sleep(100)
 		if(NsfwTools._model){
 			// model already loaded
 			return NsfwTools._model
 		}
-
+		this._isLoading = true
 		logger(prefix, 'loading model once')
-		// I have put a copy of the model folder here also: LN6kloFszCgXvubWNvbRHpp4DCnCLnXQakz8SplJZFQ
+		// model folder is here also: LN6kloFszCgXvubWNvbRHpp4DCnCLnXQakz8SplJZFQ
 		NsfwTools._model = await nsfw.load(`file://${__dirname}/model/`, {size: 299})
+		this._isLoading = false
 		return NsfwTools._model
 	}
 
@@ -106,7 +109,7 @@ export class NsfwTools {
 				|| e.message === 'Invalid block size'
 				|| e.message === 'Frame index out of range.'
 			){
-				// still not gauranteed to be corrupt, browser may be able to open these
+				// still not guaranteed to be corrupt, browser may be able to open these
 				logger(prefix, `gif. probable corrupt data found (${e.message})`, txid) 
 				return{
 					flagged: undefined,
