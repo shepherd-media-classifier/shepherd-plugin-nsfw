@@ -195,7 +195,7 @@ export class NsfwTools {
 					}
 				}
 				
-				else if(reason.startsWith('Message: PNG size too large for int:')){
+				else if( reason.startsWith('Message: PNG size too large for int:') ){
 					//oversized png
 					logger(prefix, 'oversized png found', contentType, txid)
 					return {
@@ -227,7 +227,7 @@ export class NsfwTools {
 				}
 				
 				else{
-					logger(prefix, 'UNHANDLED "Invalid TF_Status: 3" found. Reason:', reason, contentType, txid)
+					logger(prefix, 'UNHANDLED "Invalid TF_Status: 3" found. Reason:', `"${reason}"`, contentType, txid)
 					throw e
 				}
 			}
