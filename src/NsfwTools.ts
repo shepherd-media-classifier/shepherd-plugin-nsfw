@@ -195,9 +195,9 @@ export class NsfwTools {
 					}
 				}
 				
-				else if(reason === 'Message: PNG size too large for int: 23622 by 23622'){
+				else if(reason.startsWith('Message: PNG size too large for int:')){
 					//oversized png
-					// logger(prefix, 'oversized png found', contentType, txid)
+					logger(prefix, 'oversized png found', contentType, txid)
 					return {
 						flagged: undefined,
 						data_reason: 'oversized',

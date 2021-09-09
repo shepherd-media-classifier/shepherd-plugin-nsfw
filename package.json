@@ -8,6 +8,7 @@
     "build": "npx rimraf build && tsc && npx shx cp -R ./src/model ./build/model",
     "prepublish": "npm run build",
     "postversion": "git push && git push --tags && npm publish",
+    "test:grep": "mocha -r ts-node/register **/*.spec.ts --grep",
     "test": "mocha -r ts-node/register **/*.spec.ts"
   },
   "repository": {
