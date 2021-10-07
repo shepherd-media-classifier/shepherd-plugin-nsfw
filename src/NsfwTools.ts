@@ -103,11 +103,14 @@ export class NsfwTools {
 			/* handle all the bad data */
 
 			if(
-				e.message === 'Invalid GIF 87a/89a header.'
-				|| e.message.startsWith('Unknown gif block:')
-				|| e.message.startsWith('Invalid typed array length:')
-				|| e.message === 'Invalid block size'
-				|| e.message === 'Frame index out of range.'
+				e.message 
+				&& (
+					e.message === 'Invalid GIF 87a/89a header.'
+					|| e.message.startsWith('Unknown gif block:')
+					|| e.message.startsWith('Invalid typed array length:')
+					|| e.message === 'Invalid block size'
+					|| e.message === 'Frame index out of range.'
+				)
 			){
 				// still not guaranteed to be corrupt, browser may be able to open these
 				logger(prefix, `gif. probable corrupt data found (${e.message})`, txid) 
