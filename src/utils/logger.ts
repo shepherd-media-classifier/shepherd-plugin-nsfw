@@ -11,10 +11,10 @@ export const logger = (...args: any[]) => {
 
 	console.log(col.magenta(prefix), ...args)
 
-	//outputs a csv file
-	fs.appendFile(
-		'nsfwjs-plugin.log', 
-		"\"" + new Date().toUTCString() + '\",' + prefix + ',' + args.join(',') + EOL,
-		()=>{}
-	)
+	// //outputs a csv file
+	// fs.appendFile(
+	// 	'nsfwjs-plugin.log', 
+	// 	"\"" + new Date().toUTCString() + '\",' + prefix + ',' + args.join(',') + EOL,
+	// 	()=>{}
+	// )
 }

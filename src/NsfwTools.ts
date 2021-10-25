@@ -189,6 +189,7 @@ export class NsfwTools {
 				if(
 					reason.startsWith('Message: Invalid PNG data, size')
 					|| reason === 'Message: jpeg::Uncompress failed. Invalid JPEG data or crop window.'
+					|| reason.startsWith('Message: Input size should match (header_size + row_size * abs_height) but they differ by')
 				){
 					//partial image
 					logger(prefix, 'partial image found', contentType, txid)
@@ -208,8 +209,7 @@ export class NsfwTools {
 				}
 				
 				else if(
-					reason === 'Message: Input size should match (header_size + row_size * abs_height) but they differ by 2'
-					|| reason.startsWith('Message: Number of channels inherent in the image must be 1, 3 or 4, was')
+					reason.startsWith('Message: Number of channels inherent in the image must be 1, 3 or 4, was')
 				){
 					// unreadable data
 					// logger(prefix, 'bad data found', contentType, url)
