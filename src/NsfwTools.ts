@@ -234,7 +234,15 @@ export class NsfwTools {
 					throw e
 				}
 			}
-			
+
+			else if(e.message.startsWith('Invalid TF_Status: 8')){
+				// OOM error. handle later.
+				return{
+					flagged: undefined,
+					data_reason: 'oversized',
+				}
+			}
+
 			else{
 				logger(prefix, `UNHANDLED error processing [${txid}]`, e.name, ':', e.message)
 				throw e
