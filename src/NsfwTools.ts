@@ -2,6 +2,7 @@ import * as tf from '@tensorflow/tfjs-node'
 import * as nsfw from 'nsfwjs'
 import { logger } from './utils/logger'
 import { FilterErrorResult, FilterResult } from 'shepherd-plugin-interfaces'
+import si from 'systeminformation'
 
 const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
 
@@ -123,6 +124,7 @@ export class NsfwTools {
 
 			else{
 				logger(prefix, 'UNHANDLED error processing gif', txid + ' ', e.name, ':', e.message)
+				logger(prefix, await si.mem())
 				throw e
 			}
 		}
@@ -237,6 +239,7 @@ export class NsfwTools {
 
 			else if(e.message.startsWith('Invalid TF_Status: 8')){
 				// OOM error. handle later.
+				logger(prefix, await si.mem())
 				return{
 					flagged: undefined,
 					data_reason: 'oversized',
@@ -245,6 +248,7 @@ export class NsfwTools {
 
 			else{
 				logger(prefix, `UNHANDLED error processing [${txid}]`, e.name, ':', e.message)
+				logger(prefix, await si.mem())
 				throw e
 			}
 		}
