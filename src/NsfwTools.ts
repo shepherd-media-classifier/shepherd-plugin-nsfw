@@ -66,12 +66,14 @@ export class NsfwTools {
 			for(const frame of framePredictions) {
 				const class1 = frame[0].className
 				const prob1 = frame[0].probability
+				result.top_score_name = class1
+				result.top_score_value = prob1
 
 				if(class1 === 'Hentai'){
 					if(prob1 >= 0.5){
 						logger(prefix, 'hentai gif detected', txid)
 						result.flagged = true
-						score.nsfw_hentai = prob1
+						// score.nsfw_hentai = prob1
 						break;
 					}
 					logger(prefix, 'hentai < 0.5', txid)
@@ -80,14 +82,14 @@ export class NsfwTools {
 				if(class1 === 'Porn'){
 					logger(prefix, 'porn gif detected', txid)
 					result.flagged = true
-					score.nsfw_porn = prob1
+					// score.nsfw_porn = prob1
 					break;
 				}
 				
 				if(class1 === 'Sexy'){
 					logger(prefix, 'sexy gif detected', txid)
 					result.flagged = true
-					score.nsfw_sexy = prob1
+					// score.nsfw_sexy = prob1
 					break;
 				}
 			}
@@ -96,7 +98,8 @@ export class NsfwTools {
 				logger(prefix, 'gif clean', txid)
 			}
 
-			result.scores = JSON.stringify(score)
+			// result.scores = JSON.stringify(score)
+
 			return result;
 
 		}catch(e){
@@ -156,8 +159,9 @@ export class NsfwTools {
 				scores[prediction.className] = prediction.probability
 			}
 
-			let sum = scores['Porn'] + scores['Sexy'] + scores['Hentai']
-			const flagged = (sum > 0.5)
+			// let sum = scores['Porn'] + scores['Sexy'] + scores['Hentai']
+			const topName = predictions[0].className
+			const flagged = topName==='Sexy' || topName==='Porn' || ( topName==='Hentai' && predictions[0].probability > 0.5 )
 	
 			if(flagged){
 				logger(prefix, txid, flagged, JSON.stringify(scores))
@@ -166,6 +170,8 @@ export class NsfwTools {
 			return {
 				flagged,
 				scores: JSON.stringify(scores),
+				top_score_name: predictions[0].className,
+				top_score_value: predictions[0].probability,
 			}
 
 		} catch (e) {
