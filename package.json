@@ -40,7 +40,7 @@
     "@tensorflow/tfjs-node": "^3.21.1",
     "ansi-colors": "^4.1.1",
     "nsfwjs": "^2.4.1",
-    "shepherd-plugin-interfaces": "^0.2.0",
+    "shepherd-plugin-interfaces": "^0.3.0",
     "systeminformation": "^5.11.1"
   }
 }
