@@ -11,10 +11,22 @@ describe('shepherd-plugin-nsfw tests', ()=>{
 	}).timeout(0)
 
 	it('uses checkImage', async()=>{
-		const pic = await fs.readFile('./test/image.jpeg')
+		const pic = await fs.readFile('./test/assets/image.jpeg')
 		const res = await NsfwFilter.checkImage(pic,'image/jpeg', 'fake-txid')
 		expect(res.flagged).false
+		//@ts-ignore
+		expect(res.top_score_name).undefined
 	}).timeout(0)
+
+	it('uses checkImage for flagged image', async()=>{
+		const pic = await fs.readFile('./test/assets/oci0s0Y-u-vIewMCHr1XgMX07if2KkBfKnRZD2sraps.jpg')
+		const res = await NsfwFilter.checkImage(pic,'image/jpeg', 'fake-flagged-txid')
+		expect(res.flagged).true
+		//@ts-ignore
+		expect(res.top_score_name).eq('Sexy')
+		//@ts-ignore
+		expect(res.top_score_value).eq(0.9379738569259644)
+	})
 
 	it('try loading nultiple models', async()=>{
 		NsfwFilter.init()
