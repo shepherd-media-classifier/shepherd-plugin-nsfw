@@ -104,7 +104,7 @@ export class NsfwTools {
 				logger(prefix, `gif. probable corrupt data found (${e.message})`, txid) 
 				return{
 					flagged: undefined,
-					data_reason: 'corrupt-maybe',
+					data_reason: 'corrupt',//'corrupt-maybe',
 					err_message: e.message,
 				}
 			}
@@ -161,7 +161,7 @@ export class NsfwTools {
 				logger(prefix, 'probable corrupt data found', contentType, txid)
 				return {
 					flagged: undefined, //undefined as not 100% sure, might be tfjs problem opening file
-					data_reason: 'corrupt-maybe',
+					data_reason: 'corrupt',//'corrupt-maybe',
 				}
 			}
 			
