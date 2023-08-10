@@ -1,13 +1,13 @@
 {
   "name": "shepherd-plugin-nsfw",
-  "version": "0.2.3",
+  "version": "0.2.3-beta.0",
   "description": "",
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
   "scripts": {
     "postinstall": "npm rebuild @tensorflow/tfjs-node --build-from-source",
     "build": "npx -y rimraf build && tsc && npx -y shx cp -R ./src/model ./build/model",
-    "postversion": "git push && git push --tags && npm run build && npm publish",
+    "postversion": "git push && git push --tags && npm run build && npm publish --tag beta",
     "test:grep": "mocha -r ts-node/register **/*.spec.ts --grep",
     "test": "npm run build && mocha -r ts-node/register **/*.spec.ts"
   },
